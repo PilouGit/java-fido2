@@ -1,6 +1,6 @@
 package com.neuresys.fido2.hid;
 
-import com.neuresys.fido2.cte.CtapHIDCmd;
+import com.neuresys.fido2.hid.cte.CtapHIDCmd;
 
 public class CtapHidRequest {
 

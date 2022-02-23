@@ -52,7 +52,7 @@ public abstract class BaseExample implements HidServicesListener {
   public static void sleepNoInterruption() {
     boolean interrupted = false;
     try {
-      long remainingNanos = TimeUnit.SECONDS.toNanos(5);
+      long remainingNanos = TimeUnit.SECONDS.toNanos(50);
       long end = System.nanoTime() + remainingNanos;
       while (true) {
         try {

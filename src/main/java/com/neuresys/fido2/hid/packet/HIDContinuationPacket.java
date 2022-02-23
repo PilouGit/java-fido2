@@ -1,6 +1,7 @@
 package com.neuresys.fido2.hid.packet;
 
-import com.neuresys.fido2.cte.CtapHIDCmd;
+import com.neuresys.fido2.hid.cte.CtapHIDCmd;
+import com.neuresys.fido2.hid.cte.CtapMiscCte;
 import com.neuresys.fido2.utils.ByteUtils;
 
 /*   """HID Continuation Packet consists of:
@@ -12,24 +13,30 @@ import com.neuresys.fido2.utils.ByteUtils;
     */
 public class HIDContinuationPacket implements HIDPacket{
 	
-	private byte[] cid;
-	private byte[] payload;
-	private byte[] packet;
+	private byte[] cid=new byte [4];
+	private byte[] payload=new byte [CtapMiscCte.HIDCONTINUATIONSIZE];;
 	private int seqNumber;
 
 	public HIDContinuationPacket(byte [] cid, int seqNumber,byte [] payload)
 	{
 		this.cid=cid;
-		this.payload=payload;
-		this.packet=new byte[4+1+payload.length];
 		this.seqNumber=seqNumber;
-		for (int i=0;i<4;i++) this.packet[i]=cid[i];
-		
-		this.packet[4] = (byte) (this.seqNumber & ~(1 << 7));
-				 
-		for (int i=0;i<payload.length;i++)this.packet[5+i]=payload[i];
+		this.payload=payload;
+	
 		
 	}
+	public HIDContinuationPacket(byte [] data)
+	{
+		
+		for (int i=0;i<4;i++) this.cid[i]=data[i];
+		this.seqNumber=data[4];
+		for (int i=0;i<this.payload.length;i++)
+		{
+			this.payload[i]=data[5+i];
+		}
+	}
+
+	
 
 	public byte[] getCid() {
 		return cid;
@@ -41,12 +48,20 @@ public class HIDContinuationPacket implements HIDPacket{
 
 	@Override
 	public byte[] getPacket() {
-		return packet;
+		 byte[] packet=new byte[CtapMiscCte.MESSAGE_SIZE];
+		 System.arraycopy(cid, 0, packet, 0, cid.length);
+		 packet[4] = (byte) (this.seqNumber & ~(1 << 7));
+		 System.arraycopy(payload, 0, packet, 5, payload.length);
+		 return packet;
 	}
 
 	public int getSeqNumber() {
 		return seqNumber;
 	}
 	
+	public String toString()
+	{
+		return "HIDContinuationPacket("+this.seqNumber+")"+ByteUtils.convertBytesToHex(this.getPacket());
+	}
 	
 }

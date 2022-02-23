@@ -44,6 +44,7 @@ public class HIDTest implements HidServicesListener {
 		  System.out.println(hidDevice);
 		 //hidDevice.getFeatureReport(data, reportId)
 		}
+		
 		    
 	}
 

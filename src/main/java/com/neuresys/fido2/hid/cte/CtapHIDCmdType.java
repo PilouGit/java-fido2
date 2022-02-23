@@ -1,4 +1,4 @@
-package com.neuresys.fido2.cte;
+package com.neuresys.fido2.hid.cte;
 
 public class CtapHIDCmdType {
 	public static final byte INITIALIZATION = 1;

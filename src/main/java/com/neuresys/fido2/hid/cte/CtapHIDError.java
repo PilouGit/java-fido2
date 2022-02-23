@@ -1,4 +1,4 @@
-package com.neuresys.fido2.cte;
+package com.neuresys.fido2.hid.cte;
 
 public class CtapHIDError {
 	public static byte ERR_INVALID_CMD = 0x01; // The command in the request is invalid

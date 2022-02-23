@@ -2,7 +2,7 @@ package com.neuresys.fido2.hid;
 
 import org.junit.Test;
 
-import com.neuresys.fido2.cte.CtapHIDCmd;
+import com.neuresys.fido2.hid.cte.CtapHIDCmd;
 import com.neuresys.fido2.hid.packet.HIDInitializationPacket;
 
 public class PacketTest {

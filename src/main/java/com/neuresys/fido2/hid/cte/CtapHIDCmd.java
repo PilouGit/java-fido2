@@ -1,13 +1,14 @@
-package com.neuresys.fido2.cte;
+package com.neuresys.fido2.hid.cte;
 
 public enum CtapHIDCmd {
-	  CTAPHID_MSG ((byte) 0x03),
-	CTAPHID_CBOR((byte) 0x10),
-	CTAPHID_INIT ( (byte) 0x06),
-	CTAPHID_PING ( (byte) 0x01),
-	CTAPHID_CANCEL( (byte) 0x11),
-	CTAPHID_ERROR ( (byte) 0x3F),
-	CTAPHID_KEEPALIVE ( (byte) 0x3B);
+	
+	CTAPHID_MSG ((byte) (0x80|0x03)),
+	CTAPHID_CBOR((byte) (0x80|0x10)),
+	CTAPHID_INIT ( (byte) (0x80|0x06)),
+	CTAPHID_PING ( (byte) (0x80|0x01)),
+	CTAPHID_CANCEL( (byte) (0x80|0x11)),
+	CTAPHID_ERROR ( (byte) (0x80|0x3F)),
+	CTAPHID_KEEPALIVE ( (byte) (0x80|0x3B));
 	
 ;
 
